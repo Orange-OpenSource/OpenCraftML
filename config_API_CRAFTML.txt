@@ -1,0 +1,108 @@
+#-------------------------------------------------------------------
+#         CRAFTML API CONFIGURATION FILE
+#-------------------------------------------------------------------
+#
+#  The "#" charactere is used to comment a line
+#  To activate one line, juste remove the "#" at the beginning
+#
+#  To run craftML: java -jar craftML01.jar config_API_CRAFTML.txt             (the config file should be in the same directory as the jar file)
+#  To run craftML for with XML (Extrem Multi label) data, you should use the -Xmx -Xms option to ask for more RAM
+#      for instance if you can ask 32Gb of RAM, you can use: java -Xms32g -XMX32g -jar craftML01.jar c:\OpenCraftML2019\config_API_CRAFTML.txt
+#
+#==================================================================
+#=================  Action Configuration for API     ==============
+#==================================================================
+#
+# possible values for action = learnAndWrite,learnAndPredict,learnAndMeasure,learnPredictAndMeasure,readModelAndMeasure,readModelAndPredict,readModelPredictAndMeasure
+# possible values for inputFilesType = libsvm,tabular
+# inputTrainFile,inputPredictFile,outputPredictFile,outputMeasureFile are the paths to the files
+# outputPath,modelPath are the path to the directories (with a slash "/" at the end!)
+# modelName is a string of characteres
+#
+# WARNING: currently, listOfMetrics is not taken into account (even though the metrics evaluation are implemented); precision at 1, 3, 5 is carried out instead
+#
+#==================================================================   
+# Learn a model from UCI data (tabular format) and save the model into a file: example :  
+#(to activate this process, remove the "#" of the next 7 lines)
+#
+#action=learnAndWrite
+#inputFilesType=tabular
+#inputTrainFile=C:/data_UCI/iris/out/iris_train1.txt
+#outputPath=C:/data_UCI/iris/model/
+#modelName=modelIris1
+#tabularClassPrefix=class
+#tabularFieldDelim=TABULATION
+#
+#==================================================================          
+# Learn a model from a multi-label data repository (libsvm data) and save the model into a file: example:
+#
+#action=learnAndWrite
+#inputFilesType=libsvm
+#inputTrainFile=C:/data_XML/Eurlex4k/eurlex4k_train.txt
+#outputPath=C:/data_XML/Eurlex4k/model/
+#modelName=modelEurlex_v1
+#
+#==================================================================  
+# Learn a model and then directly make predictions: example:
+#
+#action=learnAndPredict
+#inputFilesType=libsvm
+#inputTrainFile=C:/data_XML/Eurlex4k/eurlex4k_train.txt
+#inputPredictFile=C:/data_XML/Eurlex4k/eurlex4k_test.txt
+#outputPredictFile=C:/data_XML/Eurlex4k/predictions.txt
+#
+#==================================================================   
+# Learn a model, make predictions and evaluate performance (tabular data format, UCI data): example                     
+#
+action=learnPredictAndMeasure
+inputFilesType=tabular
+inputTrainFile=C:/data_UCI/iris/out/iris_train1.txt
+inputPredictFile=C:/data_UCI/iris/out/iris_test1.txt
+listOfMetrics=Pat1+Pat5+HammingLoss
+outputPredictFile=C:/data_UCI/iris/out/predictions.txt
+outputMeasureFile=C:/data_UCI/iris/out/measures.txt
+tabularClassPrefix=class
+tabularFieldDelim=TABULATION
+#
+#==================================================================          
+# Read a model (previously saved) and make predictions: example
+#
+#action=readModelAndPredict
+#inputFilesType=libsvm
+#modelPath=C:/data_XML/Eurlex4k/model/
+#modelName=modelEurlex_v1
+#inputPredictFile=C:/data_XML/Eurlex4k/eurlex4k_test.txt
+#outputPredictFile=C:/data_XML/Eurlex4k/predictions.txt
+#
+#==================================================================
+# Read a model, make predictions and measure performances: example
+#
+#action=readModelPredictAndMeasure
+#inputFilesType=libsvm
+#modelPath=C:/data_XML/Eurlex4k/model/
+#modelName=modelEurlex_v1
+#inputPredictFile=C:/data_XML/Eurlex4k/eurlex4k_test.txt
+#listOfMetrics=Pat1+Pat5+HammingLoss
+#outputPredictFile=C:/data_XML/Eurlex4k/predictions.txt
+#outputMeasureFile=C:/data_XML/Eurlex4k/measures.txt
+#
+#==================================================================
+#=================  parameters of a CRAFTML model  ================
+#==================================================================
+#
+# nbTree, depthMax, branchFactor,topN, dimProjX, dimProjY, sparsity, sizeReservoirKmeans, minInstLeaf are INTEGERS.
+# optimizeMemory et allTreesTogether are BOOLEANS (true/false).
+#
+# The values below are the default values
+#
+nbTree=50
+depthMax=800
+branchFactor=10
+topN=20
+dimProjX=10000
+dimProjY=10000
+sparsity=1000
+sizeReservoirKmeans=20000
+minInstLeaf=10
+optimizeMemory=false
+allTreesTogether=false
