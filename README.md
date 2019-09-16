@@ -1,5 +1,8 @@
 # OpenCraftML
 
+While most automatic classification algorithms can only classify data in one category at a time, CraftML can classify data into multiple categories. CraftML is a Clustering-based Random Forest for Extreme multi-label Learning, and it is, in its category, a state of the art algorithm.
+
+
 This project is the original java implementation of CraftML, an efficient Clustering-based Random Forest for Extreme multi-label Learning.
 If you use this code, please cite this paper:
 
