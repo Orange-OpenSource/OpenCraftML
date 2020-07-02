@@ -1,0 +1,62 @@
+﻿#  If you modify this example be careful to save in UTF8 without BOM text format (use notepad++ if necessary)
+#  Be careful not to use the implication symbol in your texts
+#  the label list separators are: comma, semicolon, space, tabulation  ; 
+#  note that punctuation signs (and + : -) are separated from label nouns: 
+#    for instance, sound+ will be interpreted as 2 labels, sound and +
+#
+#--------------------------------------------------------------------
+#         ELIZA
+#
+Salut met la radio eliza 	=>	radio
+vAS Y eLiZa la télé sur la 7	=>	télé ; 7
+met la radio	=>	radio
+je voudrais écouter les beatles	=>	radio ; musique
+met moi le JT sur la 2 stp	=>	télé ; 2
+Eliza quel temps il fait ?	=>	météo
+est-ce qu'il fait chaud à Paris ?	=>	météo ; paris
+allume moi la télé sur un une stp	=>	télé ; 1
+je voudrais voir game of thrones	=>	télé ; série
+je veux voir un documentaire	=>	télé; documentaire
+éclaire la chambre stp	=>	domotique chambre lumière
+allume dans la salle à manger	=>	domotique salle_manger ; lumière
+éteins ma chambre	=>	domotique
+remet la lumière dans la chambre	=>	domotique chambre ; lumière
+réallume la chaudière stp	=>	chaudière on
+réallume la lumière dans le garage	=>	domotique ; lumière ; garage
+éteins le chauffage	=>	chaudière off
+prepare moi un café stp Eliza	=>	machine	; café
+fais moi un pt'it café Eliza 	=>	machine ; café
+Je voudrais savoir s'il flotte à Lannion	=>	météo ; bretagne
+Eliza monte un peu le volume	=>	radio ; volume_plus
+tu peux baisser le son stp	=>	radio ; volume_moins
+éteins la chambre	=>	domotique ; lumière ; chambre ; off
+allume la radio	=>	radio ; on
+allume le chauffage	=>	chaudière ; on ; domotique
+éteins tout bordel	=>	off ; pasContent
+# ------------------------------------------------------------------
+Hi put radio eliza => radio
+Please eLiZa TV on 7 => TV; 7
+turn on the radio => radio
+I would like to listen to the beatles => radio; music
+put me the news on the 2 stp => TV ; 2
+Eliza what's the weather like? => weather
+is it hot in paris? => weather; Paris
+turn on the TV on a stp => TV; 1
+I would like to see game of thrones => TV; series
+I want to see a documentary => TV; documentary
+light up the stp room => home automation light room
+switch on in the dining room => home automation dining_room; light
+turn off my room => home automation
+puts the light back in the room => home automation room; light
+turn the boiler back on stp => boiler ; on
+relight the light in the garage => home automation; light; garage
+turn off the heating => boiler off
+prepare me a coffee please Eliza => machine; coffee
+make me a little coffee Eliza => machine; coffee
+I would like to know if it floats in Lannion => weather; Brittany
+Eliza turns up the volume a bit => radio; sound+
+you can lower the sound please => radio; sound-
+turn off the room => home automation; light; bedroom ; off
+turn on the radio => radio; ON
+switch on the heating => boiler; On; Automation
+turn off all the mess => off; not_happy

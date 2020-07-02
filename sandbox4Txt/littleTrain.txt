@@ -1,0 +1,139 @@
+﻿#  If you modify this example be careful to save in UTF8 without BOM text format (use notepad++ if necessary)
+#  Be careful not to use the implication symbol in your texts
+#  the label list separators are: comma, semicolon, space, tabulation  ; 
+#  note that punctuation signs (and + : -) are separated from label nouns: 
+#    for instance, sound+ will be interpreted as 2 labels, sound and +
+#-------------------------------------------------
+#         Eliza  
+#
+Salut Eliza allume la radio stp	=>	radio
+vAS Y Eliza met moi la 3	=>	télé ; 3
+Aller Eliza met moi la radio	=>	radio
+je voudrais écouter Johnny	=>	radio
+met moi le JT de claire chazal stp	=>	télé ; 1
+Eliza quel temps il fait ?	=>	météo
+il fait chaud à Paris ?	=>	météo
+allume moi la télé sur un une stp	=>	télé
+je voudrais voir game of thrones	=>	télé
+je veux voir un documentaire	=>	télé
+allume la chambre stp	=>	domotique chambre ; lumière
+allume la salle à manger	=>	domotique salle_manger ; lumière
+éteins ma chambre	=>	domotique
+remet la lumière dans la chambre	=>	domotique chambre
+réallume la chaudière stp	=>	chaudière on
+réallume la lumière dans le garage	=>	domotique ; garage ; lumière
+éteins le chauffage	=>	chaudière off
+prepare moi un café stp Eliza	=>	machine	; café
+fais moi du café Eliza	=>	machine ; café
+Je voudrais savoir s'il pleut à Lannion	=>	météo ; bretagne
+Eliza monte le volume	=>	radio ; volume_plus
+baisse le son stp	=>	radio ; volume_moins
+éteins la chambre	=>	domotique ; lumière ; chambre ; off
+allume la radio	=>	radio ; on
+allume le chauffage	=>	chaudière ; on ; domotique
+éteins tout bordel	=>	off ; pasContent
+#----------------------------------------------------------
+Hi Eliza, turn on the radio stp => radio
+Please Eliza put me the 3 => TV; 3
+Go Eliza put me on the radio => radio
+I would like to listen to Johnny => radio
+put me the news from claire chazal stp => TV ; 1
+Eliza what's the weather like? => weather
+Is it hot in Paris? => weather
+turn me on the TV on a stp => TV
+I would like to see game of thrones => TV
+I want to see a documentary => TV
+turn on the room stp => home automation room; light
+switch on the dining room => home automation dining_room; light
+turn off my room => home automation
+puts the light back in the room => home automation room
+turn the boiler back on stp => boiler On
+relight the light in the garage => home automation; garage ; light
+turn off the heating => boiler off
+prepare me a coffee please Eliza => machine; coffee
+make me coffee Eliza => machine; coffee
+I would like to know if it rains in Lannion => weather; Brittany
+Eliza turns up the volume => radio; sound+
+lower the sound please => radio; sound-
+turn off the room => home automation; light; bedroom ; off
+turn on the radio => radio; ON
+switch on the heating => boiler; On; Automation
+turn off all the mess => off; not_happy
+
+#
+#------------------------------------------------
+#       Eliza : Prédictions : le fichier peut être utilisé comme fichier de prédiction 
+#       (après entrainement) 
+#       et dans ce cas les textes non suivis de "=>" seront complétés par les prédiction
+#       du modèle (labels les plus probables) alors que les textes suivis de "=>" seront
+#       utilisé pour évaluer les performances
+#
+la télé !	
+met moi la 2 Eliza stp		
+la radio !	
+fais moi écouter Voulzy	
+je voudrais connaitre le temps à Lannion	
+quel est le temps à Paris	
+je veux voir un truc...	
+il fait chaud à Brest ?	
+met la lumière dans ma chambe	
+met la télé plus fort	
+met la chaudière please	
+éteins la chaudière	
+allume le chauffage	
+fais moi plaisir Eliza	
+quel temps fait il ?	
+Eliza please monte moi le son STP	
+
+#-----------------
+
+TV !
+put me the 2 Eliza please
+the radio !
+make me listen to Voulzy
+I would like to know the weather in Lannion
+what's the weather in paris
+I want to see something ...
+is it hot in Brest?
+put the light in my room
+make tv stronger
+put the boiler please
+turn off the boiler
+turn on the heater
+please me Eliza
+what weather is it ?
+Eliza please turn up the sound STP
+#
+#
+#---------------------------------------------------  
+#          SENTIMENT  APPrentissage  / Training
+#
+La visualisation des vidéos est excellente	=>	FR Content
+je suis content	=>	Content  FR
+I am happy	=>	Content ENG
+ça marche bien la 4g c'est super génial	=>	Content FR
+It is a wonderful life	=>	ENG  Content Happy
+4g reste problématique !	=>	pasContent FR
+ça marche PAS la 4g !!!!	=>	pasContent FR
+aucune différence c'est le bazar cette 4g	=>	pasContent
+fucking network	=>	ENG not_happy 
+my tailor is weird	=>	ENG  not_happy
+je ferai bien encore une essai c'est cool = > FR ; content ; essai
+#
+#
+# --------------------------------------------------
+#      SENTIMENT Prédictions / Prediction
+#
+my tailor is rich	
+fuck !	
+c'est super ce truc !	
+elle est bien  cette visu des vidéos m'enfin  !	
+j'espère qu'il va comprendre ce qu'est le français ...	
+je suis triste que ça ne marche pas	
+l'essai est concluant c'est génial	
+My tailor is rich but poor in mind	
+
+
+
+
+

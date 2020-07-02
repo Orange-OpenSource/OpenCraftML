@@ -1,0 +1,25 @@
+// début de script...
+// parametrage CraftML
+//
+//
+setNumberOfTrees  10
+setBranchFactor 5
+setDimX 2000
+setDimY 1000
+setSizeReservoir 10000
+setNumberOfThreads 4
+setTopNMax 50
+setMinInstancesInLeaf 5
+setSparsity 1000
+setCharNgrams 3
+setWordNgrams 3
+remove punctuation false
+//
+// learn / predict / eval for LittleTrain.txt (eval sur commandes Diego simples uniquement, fichier littleTest)
+//
+learn C:\\sandbox4Txt\\littleTrain.txt
+// save C:\\sandbox4Txt\\MyModels\\ModelForLittleTrain
+// load C:\\sandbox4Txt\\MyModels\\ModelForLittleTrain
+predict C:\\sandbox4Txt\\littleTest.txt
+eval C:\\sandbox4Txt\\littleTest.txt
+//---
