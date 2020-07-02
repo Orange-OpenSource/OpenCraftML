@@ -6,18 +6,19 @@ The project contains also the original CraftML, a multi-label classifier for tab
 
 You can directly use the 2 provided jar programs
 
-- to use CraftML4Txt for text-mining purposes, use CraftML4Txt.jar; the "sandbox4txt" directory provides an example of text-data and un example of script that you can execute
+- to use CraftML4Txt for text-mining purposes, use CraftML4Txt.jar; the "sandbox4txt" directory provides an example of text-data and an example of script that you can execute
 
-- to use CraftML for data-mining purposes, or to run the benchmarks for research purposes, use CraftML01.jar.
+- to use CraftML for data-mining purposes, or to run the benchmarks for research purposes, use CraftML01.jar; several data and config files are provided in the "CraftML\_Examples" directory.
 
 
 Please see the documentation for more information.
 
 
-While most automatic classification algorithms can only classify data in one category at a time, CraftML can classify data into multiple categories. CraftML is a Clustering-based Random Forest for Extreme multi-label Learning, and it is, in its category, a state of the art algorithm.
+While most automatic classification algorithms can only classify data in one category at a time, CraftML can classify data into multiple categories. 
+CraftML is a Clustering-based Random Forest for Extreme multi-label Learning, and it is, in its category, a state of the art algorithm.
 
 
-This project is the original java implementation of CraftML, an efficient Clustering-based Random Forest for Extreme multi-label Learning.
+The CraftML project contains the original java implementation of CraftML, an efficient Clustering-based Random Forest for Extreme multi-label Learning.
 If you use this code, please cite this paper:
 
 SIBLINI, Wissam, MEYER, Frank, & KUNTZ, Pascale. 
@@ -56,7 +57,7 @@ README.md: this file
 
 ### Have a look to the sandbox4Txt directory first
 If you use Windows, you can directly use the sandbox4txt directory: copy this directory on C:/ to obtain a C:/sandbox4Txt/ directory. 
-You will find in this sandbox the jar program, and the script and the dataset examples that you can use directly with.
+You will find in this sandbox the script and the dataset examples that you can use directly with.
 
 If you use Linux, copy the sandbox4Txt directory in a personal folder. 
 You will just need first to adapt the filepaths in the example of script (scriptLittle.txt). 
@@ -64,7 +65,7 @@ You will just need first to adapt the filepaths in the example of script (script
 See documentation for more information.
 
 
-You will need to have Java installed on your PC (version 1.8 or later).
+To run CraftML4Txt, you will need to have Java installed on your PC (version 1.8 or later).
 
 You will need to prepare a text file (see documentation); an example is given in the sandbox4Txt directory : littleTrain.txt
 
@@ -78,20 +79,20 @@ We recommand to use an editor such as Notepad++ to check, and if necessary to en
 
 ```
 To run CraftML4Txt with the data and script examples, just type:
-java -jar craftML4Txt.jar scriptLittle.txt
+java -jar CraftML4Txt.jar scriptLittle.txt
 
 (the script file should be in the same directry as the jar file)
 ```
 
 ### INSTALLATION OF SOURCE CODE
 
-
-Note that craftML4txt contains all the code to build or and run the orginal CraftML. 
-But as some adaptations have been done specifically for text-mining, and to be sure that XMLRepository benchmarks will stay reproducible, it is better to use the previous sub-project for numerical / XML data-ming purposes.
+The craftML4txt.jar program provided as example is compiled with the CraftML\_API\_ScriptInterpretor main entry.
 
 If you are using Eclipse, you will be able to import directly the project. The main class to run / interprete script files is the CraftML\_API\_ScriptInterpretor.java class (in the textModule package).
 
-The craftML4txt.jar program provided as example is compiled with the CraftML\_API\_ScriptInterpretor main entry.
+Note that craftML4Txt contains all the code to build or and run the orginal CraftML. 
+But as some adaptations have been done specifically for text-mining, and to be sure that XML-Repository benchmarks will stay reproducible, it is better to use the previous sub-project for numerical / XML data-ming purposes.
+
 
 
 --------------------------------------
@@ -177,12 +178,12 @@ We also provide a copy of the extreme multi-label data (with the subdirectory hi
 
 Unzip the files on your disk.
 
-On Windows, unzip on c:/data_UCI and c:/data_XML respectively to be able to run the benchmarks directly from the config file given in example.
+On Windows, unzip on c:/data\_UCI and c:/data\_XML respectively to be able to run the benchmarks directly from the config file given in example.
 
 
 ### INSTALLATION OF SOURCE CODE
 
-For the version of craftML dedicated to XML benchmark and data-mining we recommand to use the CraftML\_light\_2019\_08\_ sub-project.
+For the version of craftML dedicated to XML benchmark and data-mining we recommand to use the CraftML sub-project.
 Indeed, the later version (dedicated to text-mining) has some adaptations which will not be optimal for numeric data-mining only purposes.
 
 The code is an export of an Eclipse project (version Photon).
@@ -199,7 +200,7 @@ Then click on "Finish"
 
 3) Optionnal to run the benchmarks : Install the datasets
 
-On Windows, install c:/data_UCI and c:/data_XML to be able to run the benchmarks directly from the config file given in example.
+On Windows, install c:/data\_UCI and c:/data\_XML to be able to run the benchmarks directly from the config file given in example.
 
 On Linux, install the datasets in a directory on your disk 
 and then adapt the path directory in the sources Bench_UCI.java and Bench_XML.java if you want to use CraftML from Eclipse and run the benchmarks.
@@ -223,9 +224,9 @@ In this case, you have to give in argument the path of the config file (given in
 
 Note that it is possible to generate an executable jar file 
 
-- using CraftML.java (for a command-line usage),
+- using CraftML.java as Main Class (for a command-line usage),
 
-- or using CraftML_API.java (for a using it via a config file)
+- or using CraftML_API.java as Main Class (for using it via a config file)
 
 
 
