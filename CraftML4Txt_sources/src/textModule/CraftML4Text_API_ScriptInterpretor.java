@@ -32,6 +32,7 @@ public class CraftML4Text_API_ScriptInterpretor {
 			return s;
 		} 
 		boolean ok=true;
+		int warning =0;
 		while (ok) {
 			commandLine=commandLine.trim();
 			MessManager.say("executing: "+commandLine);
@@ -40,7 +41,18 @@ public class CraftML4Text_API_ScriptInterpretor {
 				s=myInterpretor.commandInterpretor(commandLine);
 				String sp=s.toLowerCase();
 				if (sp.startsWith("error")) {
-					ok=false;
+					//ok=false;
+					warning++;
+					System.out.println();
+					System.out.println("warning: "+warning);
+					System.out.println("error for line :");
+					System.out.println(commandLine);
+					System.out.println("check syntax or check if text is true UTF8  format");
+					if (warning>3) {
+						System.out.println("too much warning, aborting");
+						ok=false;
+					}
+					
 				}
 				MessManager.say(s);
 			}
@@ -52,6 +64,9 @@ public class CraftML4Text_API_ScriptInterpretor {
 				ok=false;
 			}
 			
+		}
+		if (warning>0) {
+			return "End Exec - number of warning: "+warning;
 		}
 		return "End Exec - status OK";
 	}

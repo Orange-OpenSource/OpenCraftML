@@ -662,7 +662,8 @@ public class CraftML4Text_API {
 		SimpleTextWriterUTF8 outputFile=new SimpleTextWriterUTF8();
 		inputFile.openFile(globalPath);
 		outputFile.openFile(globalPath+".predict.txt");
-		int nblinepredicted=0;
+		int nbLinePurelyPredicted=0;
+		int nbConstrainedPredicted=0;
 		String lineIn=inputFile.readLine();
 
 		while (lineIn!=null) {
@@ -675,7 +676,7 @@ public class CraftML4Text_API {
 				//lineOut=lineIn+" == not identified "; // DEFAULT
 				lineOut=lineIn;
 				if (isAToPredicLine(lineIn)) {
-					nblinepredicted++;
+					nbLinePurelyPredicted++;
 					String predict=getYStringPrediction(lineIn);
 					//lineOut=lineIn+"\t//\t"+predict+" == identified as to predict ";
 					lineOut=lineIn+myParams.predictionWriterPrefix+predict;
@@ -693,6 +694,7 @@ public class CraftML4Text_API {
 					predict=getYStringPredictionConstrained(XPart, listOflabels);
 					//- if we can extract a list of label, without 
 					lineOut=lineIn+myParams.predictionWriterPrefix+predict;
+					nbConstrainedPredicted++;
 					if (myParams.addClusterInfoPrediction) {
 						predict=getClusterPathPredictionForString(XPart);
 						lineOut=lineOut+myParams.predictionWriterPrefix+predict;
@@ -705,8 +707,9 @@ public class CraftML4Text_API {
 		inputFile.closeFile();
 		outputFile.closeFile();
 
-
-		return "number of real records predicted:"+nblinepredicted ; 
+		String mess="number of records purely predicted:"+nbLinePurelyPredicted+"\t";
+		mess=mess+"number of constrained records predicted: "+nbConstrainedPredicted;
+		return mess ; 
 	}
 
 

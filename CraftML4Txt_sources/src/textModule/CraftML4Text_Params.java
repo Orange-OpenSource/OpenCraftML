@@ -33,7 +33,7 @@ public class CraftML4Text_Params {
 	public int depthMax=100; 
 	public int sizeReservoirSampling4Kmeans=20000 ; // number of examples kept to carry out the kmeans at each step
 	public int xProjectionSize=5000;   // size of projection for text's features   (X part)
-	public int yProjectionSize=5000;   // size of projection for label's features  (Y part)
+	public int yProjectionSize=1000;   // size of projection for label's features  (Y part)
 	public int sparsity=1000;          // number of projections' features (X space) kept after the spherical kmeans clustering and the projection (top sparsity of weights)
 	// --- not used for the moment 
 	public int nbThread=4; // by default
