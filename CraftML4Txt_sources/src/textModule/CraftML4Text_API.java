@@ -110,7 +110,7 @@ public class CraftML4Text_API {
 			return "commentary skipped";
 		}
 		// --- now must be an example ---
-		if (!couldBeATrainingLine(example)) {
+		if (!couldBeATrainingOrConstrainedOrTestLine(example)) {
 			numberOfSyntaxicallyWrongExample++;
 			return "not an x=>y example: "+example;
 		}
@@ -266,7 +266,7 @@ public class CraftML4Text_API {
 	 * @param line
 	 * @return
 	 */
-	public boolean couldBeATrainingLine(String line) {
+	public boolean couldBeATrainingOrConstrainedOrTestLine(String line) {
 		assert (line!=null);
 		if (!line.contains(myParams.xySep)) {
 			//System.out.println("no prediction sep");
@@ -305,6 +305,38 @@ public class CraftML4Text_API {
 		}
 		//System.out.println("   YES ");
 		return true;
+	}
+	
+	/**
+	 * Makes sure that the training or constrained prediction line contains tabulation only before and after the implication "=>" symbol
+	 * @param lineIn, ASSUMED to be a training or contrained prediction lin
+	 * @return nomalized line, or the same if pb
+	 */
+	private String getTrainingOrConstrainedPredictionlineInNormalization(String lineIn) {
+		String[] xy=lineIn.split(myParams.xySep);
+		if (xy==null) {
+			System.out.println("normalization: split x => y not possible");
+			return lineIn;
+		}
+		if (xy.length!=2) {
+			System.out.println("normalization : size of split incorrect (possibly to many '=>' symbols): "+xy.length);
+			return lineIn;
+		}
+		xy[0]=xy[0].replaceAll("\t", " ");
+		xy[1]=xy[1].replaceAll("\t", " ");
+		String lineInNormlized=xy[0]+"\t"+myParams.xySep+"\t"+xy[1];
+		lineInNormlized=lineInNormlized.replaceAll(" \t", "\t"); // for no change if the line in was correct
+		return lineInNormlized;
+	}
+	
+	/**
+	 * Makes sure that the line to predic does not have tabulation
+	 * @param lineIn
+	 * @return
+	 */
+	private String getToPredicLineNormalization (String lineIn) {
+		String lineInNormalized=lineIn.replaceAll("\t", " ");
+		return lineInNormalized;
 	}
 
 
@@ -438,7 +470,7 @@ public class CraftML4Text_API {
 		}
 		String s=myModel.getLeaf(x, 0).getID();
 		s=s.replace("tree0", "cluster");
-		return s;  // TODO
+		return s;  
 	}
 
 	public String getClusterPathPredictionForString(String x)
@@ -586,7 +618,8 @@ public class CraftML4Text_API {
 					numberOfNotEvaluatedLine++;
 
 				}
-				if (couldBeATrainingLine(lineIn)) {  // EVAL MODE
+				if (couldBeATrainingOrConstrainedOrTestLine(lineIn)) {  // EVAL MODE
+					lineIn=getTrainingOrConstrainedPredictionlineInNormalization(lineIn);
 					//String[] xy=lineIn.split(myParams.predictionWriterPrefix);
 					String[] xy=lineIn.split(myParams.xySep);
 					String predict;   
@@ -599,7 +632,7 @@ public class CraftML4Text_API {
 					} else {
 						numberOfEvaluatedLine++;
 						SmallItem yPredicted=getYItemPrediction(XPart);
-						// TODO : récupérer les labels prédit
+						// à faire : récupérer les labels prédit
 						// calculer vrai positifs, faux positifs...
 						myEval.addEvalExampleForPrecisionAtK(labelsToPredictOrdered, yPredicted);
 
@@ -643,6 +676,7 @@ public class CraftML4Text_API {
 	}
 
 
+	
 
 
 	/**======================  A VOIR =============================
@@ -662,7 +696,8 @@ public class CraftML4Text_API {
 		SimpleTextWriterUTF8 outputFile=new SimpleTextWriterUTF8();
 		inputFile.openFile(globalPath);
 		outputFile.openFile(globalPath+".predict.txt");
-		int nblinepredicted=0;
+		int nbLinePurelyPredicted=0;
+		int nbConstrainedPredicted=0;
 		String lineIn=inputFile.readLine();
 
 		while (lineIn!=null) {
@@ -674,8 +709,19 @@ public class CraftML4Text_API {
 
 				//lineOut=lineIn+" == not identified "; // DEFAULT
 				lineOut=lineIn;
-				if (isAToPredicLine(lineIn)) {
-					nblinepredicted++;
+				if (isAToPredicLine(lineIn)) { // CASE PURE "TO PREDICT"
+					nbLinePurelyPredicted++;
+					
+					//================================================   Vendredi 20 novembre 2020  ======================
+					//
+					/*
+					C'est ICI qu'il faut insérer une renormalisation de la chaine Line IN,
+					Pour s'assurer qu'elle a un format      amorce tab => tab  
+					ou bien un format amorce tab => tab liste de containtes tab
+					A faire aussi pour CouldBeTrainingLine (à renommer en raining or Contrained !)
+					*/
+					lineIn=getToPredicLineNormalization(lineIn);
+					
 					String predict=getYStringPrediction(lineIn);
 					//lineOut=lineIn+"\t//\t"+predict+" == identified as to predict ";
 					lineOut=lineIn+myParams.predictionWriterPrefix+predict;
@@ -684,7 +730,13 @@ public class CraftML4Text_API {
 						lineOut=lineOut+myParams.predictionWriterPrefix+predict;
 					}
 				}
-				if (couldBeATrainingLine(lineIn)) {  // CASE CONSTRAINED PREDICTION VIA LIST OF LABELS
+				if (couldBeATrainingOrConstrainedOrTestLine(lineIn)) {  // CASE CONSTRAINED PREDICTION VIA LIST OF LABELS
+					
+					//==================================================  Vendredi 20 novembre 2020 ========================
+					//
+					//Normalisation d'une ligne de type apprentissage / contrainte
+					lineIn=getTrainingOrConstrainedPredictionlineInNormalization(lineIn);
+					
 					//String[] xy=lineIn.split(myParams.predictionWriterPrefix);
 					String[] xy=lineIn.split(myParams.xySep);
 					String predict;   //  ="// == identified as training or test or constrained prediction...";  //===========TODO
@@ -693,6 +745,7 @@ public class CraftML4Text_API {
 					predict=getYStringPredictionConstrained(XPart, listOflabels);
 					//- if we can extract a list of label, without 
 					lineOut=lineIn+myParams.predictionWriterPrefix+predict;
+					nbConstrainedPredicted++;
 					if (myParams.addClusterInfoPrediction) {
 						predict=getClusterPathPredictionForString(XPart);
 						lineOut=lineOut+myParams.predictionWriterPrefix+predict;
@@ -705,8 +758,9 @@ public class CraftML4Text_API {
 		inputFile.closeFile();
 		outputFile.closeFile();
 
-
-		return "number of real records predicted:"+nblinepredicted ; 
+		String mess="number of records purely predicted:"+nbLinePurelyPredicted+"\t";
+		mess=mess+"number of constrained records predicted: "+nbConstrainedPredicted;
+		return mess ; 
 	}
 
 

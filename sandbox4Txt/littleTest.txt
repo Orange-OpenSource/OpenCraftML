@@ -1,4 +1,4 @@
-﻿#  If you modify this example be careful to save in UTF8 without BOM text format (use notepad++ if necessary)
+#  If you modify this example be careful to save in UTF8 without BOM text format (use notepad++ if necessary)
 #  Be careful not to use the implication symbol in your texts
 #  the label list separators are: comma, semicolon, space, tabulation  ; 
 #  note that punctuation signs (and + : -) are separated from label nouns: 

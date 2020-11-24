@@ -1,5 +1,6 @@
-// début de script...
-// parametrage CraftML
+//  FR: dÃ©but de script... parametrage CraftML
+//  ENG: Beginning of the Script...parameters for CraftML4Txt
+//
 //
 //
 setNumberOfTrees  10
@@ -15,7 +16,10 @@ setCharNgrams 3
 setWordNgrams 3
 remove punctuation false
 //
-// learn / predict / eval for LittleTrain.txt (eval sur commandes Diego simples uniquement, fichier littleTest)
+// learn / predict / eval for LittleTrain.txt (eval on Eliza's commandes)
+//
+//  This script is adapted to Windows, with the sandbox copied as C:/sandbox4Txt/
+//  You will have to adapt the paths of the file for another installation, or if you use Linux for instance
 //
 learn C:\\sandbox4Txt\\littleTrain.txt
 // save C:\\sandbox4Txt\\MyModels\\ModelForLittleTrain

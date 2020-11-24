@@ -1,6 +1,6 @@
 # OpenCraftML & CraftML4Txt
 
-This project contains a release of CraftML4Txt, a powerful multi-label classifier for raw-texts.
+This project contains a release of CraftML4Txt (version 3), a powerful multi-label classifier for raw-texts.
 The project contains also the original CraftML, a multi-label classifier for tabular numeric/symbolic data.
 
 
@@ -43,7 +43,7 @@ sanbox4Txt: directory with example of script files and text data file to run Cra
 
 CraftML01.jar: runnable jar built from the CraftML sources (using JDK 1.8 or +)
 
-CraftML4txt.jar: runnable jar built from the CraftML4Txt sources (Using JDK 1.8 or +)
+CraftML4txt.jar: runnable jar built from the CraftML4Txt (version 3) sources (Using JDK 1.8 or +)
 
 licence.txt: licence file (MIT Licence)
 
@@ -82,6 +82,10 @@ To run CraftML4Txt with the data and script examples, just type:
 java -jar CraftML4Txt.jar scriptLittle.txt
 
 (the script file should be in the same directry as the jar file)
+
+Note that with the version 3 a simple user interface is also available. To run it:
+java -jar EasyCraftML4txt.jar
+
 ```
 
 ### INSTALLATION OF SOURCE CODE
