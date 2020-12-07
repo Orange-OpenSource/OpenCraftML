@@ -12,10 +12,10 @@ public class CraftML4Text_Params {
 	public String predictionWriterPrefix="\t//\t";  // separator added after the commentary separator and before the prediction ; can be used to better extract prediction afterwards
 	public String fieldSeparator=";";  // separator used for "label=value" descriptions (for both text prediction and save/load model)
 	
-	public int maxCharNgram=3;  // size max for ngram of characters, for text parsing, 0 for no letter ngram
-	public int maxWordNgram=3;  // size max for ngrams of words, for text parsing, 0 is forbidden (put 1)
+	public int maxCharNgram=4;  // size max for ngram of characters, for text parsing, 0 for no letter ngram
+	public int maxWordNgram=4;  // size max for ngrams of words, for text parsing, 0 is forbidden (put 1)
 	
-	public boolean removePunctuation=false; // remove punctuation true/false in the x text
+	public boolean removePunctuation=true; // remove punctuation true/false in the x text
 	public boolean caseSentitive=false ; // if false, the x text is always converted into lowerCase
 	
 	//===  div parameters
@@ -28,13 +28,13 @@ public class CraftML4Text_Params {
 	
 	public int numberOfTrees=50; // by default;
 	public int branchFactor=10; // by default
-	public int topNLabels=20; // by default : number of labels kept in the leaves of the trees; could be increased if many labels and/or prediction for a list of selected labels
-	public int minInstanceInLeaf=10; // minimum number of examples in a leaf to continue to split
+	public int topNLabels=3; // by default : number of labels predicted
+	public int minInstanceInLeaf=5; // minimum number of examples in a leaf to continue to split
 	public int depthMax=100; 
 	public int sizeReservoirSampling4Kmeans=20000 ; // number of examples kept to carry out the kmeans at each step
-	public int xProjectionSize=5000;   // size of projection for text's features   (X part)
+	public int xProjectionSize=20000;   // size of projection for text's features   (X part)
 	public int yProjectionSize=1000;   // size of projection for label's features  (Y part)
-	public int sparsity=1000;          // number of projections' features (X space) kept after the spherical kmeans clustering and the projection (top sparsity of weights)
+	public int sparsity=100;          // number of projections' features (X space) kept after the spherical kmeans clustering and the projection (top sparsity of weights)
 	// --- not used for the moment 
 	public int nbThread=4; // by default
 	public boolean optimiseMemory=false;

@@ -21,6 +21,7 @@ import javax.swing.GroupLayout.Alignment;
 
 import textModule.CraftML4Text_API;
 import textModule.CraftML4Text_API_ScriptInterpretor;
+import textModule.CraftML4Text_Params;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -103,8 +104,9 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 	static final String modelName4txt="CraftTXT";
 
 
-	static final String titleFrame="Easy Interface for CRAFTML4Txt ";
-	final private String        mmVersion                     =" Version 3. Default paramaters: 50 Trees, BranchFactor 10, ngramSize=3 (words & chars). Use Scripts to change defaults.";
+	static final String titleFrame="Easy PROTOTYPE Interface for CRAFTML4Txt version 3 ";
+	//final private String        mmInfos                     ="  Default paramaters: 50 Trees, BranchFactor 10, ngramSize=4 (words & chars). Use Scripts to change defaults.";
+	//final private String        mmInfos                     =" Version Spéciale F. Walsh. Paramaters: 100 Trees, BranchFactor 10, ngramSize=3 (words & chars), ONLY 3 PREDICTIONS. Use Scripts to change defaults.";
 
 
 
@@ -251,7 +253,13 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 				System.exit(0);
 			}
 		});
-		setTitle(" CraftML4Text "+mmVersion);
+		
+		CraftML4Text_Params paramDef= new CraftML4Text_Params();
+		
+		String mmInfo=" (default params: nbTrees:"+paramDef.numberOfTrees+", branchFactor:"+paramDef.branchFactor+", ngramWords/Chars:"+paramDef.maxWordNgram+"/"+paramDef.maxCharNgram;
+		mmInfo=mmInfo+", sparsity:"+paramDef.sparsity+", nbPredictedLabels:"+paramDef.topNLabels;
+		mmInfo=mmInfo+") => Use Scripts to change defaults";
+		setTitle("CraftML4Text "+mmInfo);
 		//////////
 		buildin();
 		//////////
@@ -640,11 +648,15 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 
 
 	private void doPredict (File pathDataToPredic  ) {
-
+		String result;
+		if (myAPI.myModel!=null) {
 		String predictFilePath=mgPredictionRequestPanel.getFilePathTextFromTextField();
 		System.out.println("Trace : predict on:"+predictFilePath);
 		
-		String result=myAPI.file_predictOnInteractiveFile(predictFilePath);
+		result=myAPI.file_predictOnInteractiveFile(predictFilePath);
+		} else {
+			result="NO MODEL AVAILABLE: LEARN OR LOAD A MODEL FIRST";
+		}
 		
 		mgLabelInfo.setText(result);
 	}
@@ -678,9 +690,14 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 	}
 
 	private void doEval  (File pathEvalFile      ) {
+		String result;
+		if (myAPI.myModel!=null) {
 		String evalFilePath=mgEvaluationRequestPanel.getFilePathTextFromTextField();
 		System.out.println("Trace : eval on:"+evalFilePath);
-		String result=myAPI.file_eval_precision(evalFilePath);
+		result=myAPI.file_eval_precision(evalFilePath);
+		} else {
+			result="NO MODEL AVAILABLE: LEARN OR LOAD A MODEL FIRST";
+		}
 		mgLabelInfo.setText(result);
 	}
 

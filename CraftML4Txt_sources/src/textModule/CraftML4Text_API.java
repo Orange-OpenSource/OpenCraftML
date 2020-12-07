@@ -15,7 +15,7 @@ public class CraftML4Text_API {
 	static final String modelExtensionName=".craftTXT.txt";
 
 
-	//========> TODO : IL FAUDRA AJOUTER UN MODE LEARN "BIG DATAFILE"  <==========
+	
 
 	public String modelForTextExtension=".4TEXT.txt"; 
 
@@ -212,6 +212,13 @@ public class CraftML4Text_API {
 		x=myParser.getNormalizedStringWithoutDoubleSpace(x);
 		//System.out.println("VUE LABELS :"+x);
 		String[] result=x.split(" ");
+		if (result!=null) {
+			if (result.length>0) {
+				for (int i=0; i<result.length;i++) {
+					result[i]=result[i].trim();
+				}
+			}
+		}
 		return result; 
 	}
 
@@ -709,7 +716,6 @@ public class CraftML4Text_API {
 
 				//lineOut=lineIn+" == not identified "; // DEFAULT
 				lineOut=lineIn;
-<<<<<<< HEAD
 				if (isAToPredicLine(lineIn)) { // CASE PURE "TO PREDICT"
 					nbLinePurelyPredicted++;
 					
@@ -723,10 +729,6 @@ public class CraftML4Text_API {
 					*/
 					lineIn=getToPredicLineNormalization(lineIn);
 					
-=======
-				if (isAToPredicLine(lineIn)) {
-					nbLinePurelyPredicted++;
->>>>>>> 64b7db794339eb73135279a74fb4b10e7d2d17c1
 					String predict=getYStringPrediction(lineIn);
 					//lineOut=lineIn+"\t//\t"+predict+" == identified as to predict ";
 					lineOut=lineIn+myParams.predictionWriterPrefix+predict;
