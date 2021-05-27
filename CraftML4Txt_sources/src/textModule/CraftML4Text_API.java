@@ -209,7 +209,12 @@ public class CraftML4Text_API {
 		for (int i=0; i<myParams.labelSeparator.length;i++) {
 			x=x.replace(myParams.labelSeparator[i], " ");   
 		}
-		x=myParser.getNormalizedStringWithoutDoubleSpace(x);
+		//x=myParser.getNormalizedStringWithoutDoubleSpace(x);  // modification 2021/05/27 to avoid splitting on "." and "+"... on label lists
+		
+		while (x.contains("  ")) {
+			x=x.replace("  ", " ");
+		}
+		
 		//System.out.println("VUE LABELS :"+x);
 		String[] result=x.split(" ");
 		if (result!=null) {

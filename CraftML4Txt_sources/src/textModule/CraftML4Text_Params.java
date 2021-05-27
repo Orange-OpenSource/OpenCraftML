@@ -30,9 +30,9 @@ public class CraftML4Text_Params {
 	public int branchFactor=10; // by default
 	public int topNLabels=3; // by default : number of labels predicted
 	public int minInstanceInLeaf=5; // minimum number of examples in a leaf to continue to split
-	public int depthMax=100; 
+	public int depthMax=10; 
 	public int sizeReservoirSampling4Kmeans=20000 ; // number of examples kept to carry out the kmeans at each step
-	public int xProjectionSize=20000;   // size of projection for text's features   (X part)
+	public int xProjectionSize=10000;   // size of projection for text's features   (X part)
 	public int yProjectionSize=1000;   // size of projection for label's features  (Y part)
 	public int sparsity=100;          // number of projections' features (X space) kept after the spherical kmeans clustering and the projection (top sparsity of weights)
 	// --- not used for the moment 

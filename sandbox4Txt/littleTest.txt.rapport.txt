@@ -1,0 +1,17 @@
+test file: D:\DocsFrank\GIT\OpenCraftML\sandbox4Txt\littleTest.txt
+File Eval precision, number of line Evaluated: 52
+File Eval precision, number of line Not Evaluated: 0
+Precision@K
+number of record evaluated:	52
+mean precision@1	1.0
+mean precision@2	0.875
+mean precision@3	0.875
+mean precision@4	0.875
+mean precision@5	0.875
+mean precision@6	0.875
+mean precision@7	0.875
+mean precision@8	0.875
+mean precision@9	0.875
+mean precision@10	0.875
+
+Evaluation execution time (secondes): 0.0

@@ -104,7 +104,7 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 	static final String modelName4txt="CraftTXT";
 
 
-	static final String titleFrame="Easy PROTOTYPE Interface for CRAFTML4Txt version 3 ";
+	static final String titleFrame="Easy PROTOTYPE Interface for CRAFTML4Txt version 3.01 ";
 	//final private String        mmInfos                     ="  Default paramaters: 50 Trees, BranchFactor 10, ngramSize=4 (words & chars). Use Scripts to change defaults.";
 	//final private String        mmInfos                     =" Version Spéciale F. Walsh. Paramaters: 100 Trees, BranchFactor 10, ngramSize=3 (words & chars), ONLY 3 PREDICTIONS. Use Scripts to change defaults.";
 
@@ -258,7 +258,7 @@ public class EasyGUI4TxtModule extends JFrame implements ActionListener
 		
 		String mmInfo=" (default params: nbTrees:"+paramDef.numberOfTrees+", branchFactor:"+paramDef.branchFactor+", ngramWords/Chars:"+paramDef.maxWordNgram+"/"+paramDef.maxCharNgram;
 		mmInfo=mmInfo+", sparsity:"+paramDef.sparsity+", nbPredictedLabels:"+paramDef.topNLabels;
-		mmInfo=mmInfo+") => Use Scripts to change defaults";
+		mmInfo=mmInfo+") => Use Scripts to use other params";
 		setTitle("CraftML4Text "+mmInfo);
 		//////////
 		buildin();

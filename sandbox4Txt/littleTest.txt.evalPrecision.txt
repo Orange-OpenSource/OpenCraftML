@@ -1,0 +1,62 @@
+#  If you modify this example be careful to save in UTF8 without BOM text format (use notepad++ if necessary)
+#  Be careful not to use the implication symbol in your texts
+#  the label list separators are: comma, semicolon, space, tabulation  ; 
+#  note that punctuation signs (and + : -) are separated from label nouns: 
+#    for instance, sound+ will be interpreted as 2 labels, sound and +
+#
+#--------------------------------------------------------------------
+#         ELIZA
+#
+Salut met la radio eliza 	=>	 radio	//	radio=1.0;on=0.14166668;ON=0.091666676;	//	cluster_6_5_4
+vAS Y eLiZa la télé sur la 7	=>	 télé ; 7	//	télé=0.9;3=0.6;chambre=0.1;	//	cluster_6_1
+met la radio	=>	 radio	//	radio=0.9;on=0.14166668;chambre=0.1;	//	cluster_1
+je voudrais écouter les beatles	=>	 radio ; musique	//	radio=0.9;volume_plus=0.4;volume_moins=0.3;	//	cluster_6_1
+met moi le JT sur la 2 stp	=>	 télé ; 2	//	télé=0.8;3=0.35;1=0.325;	//	cluster_6_8
+Eliza quel temps il fait ?	=>	 météo	//	météo=0.9083333;bretagne=0.19166669;TV=0.06666667;	//	cluster_2
+est-ce qu'il fait chaud à Paris ?	=>	 météo ; paris	//	météo=0.975;bretagne=0.19166669;Content=0.025;	//	cluster_2
+allume moi la télé sur un une stp	=>	 télé ; 1	//	télé=1.0;1=0.058333337;3=0.05;	//	cluster_4
+je voudrais voir game of thrones	=>	 télé ; série	//	télé=1.0;3=0.05;1=0.025;	//	cluster_6_1
+je veux voir un documentaire	=>	 télé; documentaire	//	télé=1.0;1=0.058333337;	//	cluster_4
+éclaire la chambre stp	=>	 domotique chambre lumière	//	domotique=0.9;chambre=0.8;lumière=0.75;	//	cluster_3_5
+allume dans la salle à manger	=>	 domotique salle_manger ; lumière	//	domotique=1.0;lumière=0.8666667;salle_manger=0.6833333;	//	cluster_3_0
+éteins ma chambre	=>	 domotique	//	domotique=1.0;chambre=0.16666667;lumière=0.13333334;	//	cluster_3_3
+remet la lumière dans la chambre	=>	 domotique chambre ; lumière	//	domotique=1.0;chambre=0.9;lumière=0.116666675;	//	cluster_3_1
+réallume la chaudière stp	=>	 chaudière on	//	chaudière=0.95;on=0.95;radio=0.05;	//	cluster_6_3
+réallume la lumière dans le garage	=>	 domotique ; lumière ; garage	//	domotique=1.0;lumière=1.0;garage=0.95;	//	cluster_3_4
+éteins le chauffage	=>	 chaudière off	//	chaudière=0.9166667;off=0.78333336;domotique=0.18333334;	//	cluster_6_4
+prepare moi un café stp Eliza	=>	 machine ; café	//	machine=1.0;café=0.7;coffee=0.3;	//	cluster_6_6
+fais moi un pt'it café Eliza 	=>	 machine ; café	//	machine=1.0;café=0.7;coffee=0.3;	//	cluster_6_6
+Je voudrais savoir s'il flotte à Lannion	=>	 météo ; bretagne	//	météo=0.875;bretagne=0.49166664;domotique=0.1;	//	cluster_2
+Eliza monte un peu le volume	=>	 radio ; volume_plus	//	radio=0.85;volume_plus=0.825;chaudière=0.15;	//	cluster_6_3
+tu peux baisser le son stp	=>	 radio ; volume_moins	//	radio=0.7;volume_moins=0.6;Content=0.1;	//	cluster_6_8
+éteins la chambre	=>	 domotique ; lumière ; chambre ; off	//	domotique=1.0;chambre=0.9333333;lumière=0.9;	//	cluster_3_2
+allume la radio	=>	 radio ; on	//	radio=1.0;on=0.6416667;	//	cluster_6_5_4
+allume le chauffage	=>	 chaudière ; on ; domotique	//	chaudière=0.9166667;on=0.73333335;domotique=0.7083334;	//	cluster_6_3
+éteins tout bordel	=>	 off ; pasContent	//	pasContent=0.95;off=0.775;FR=0.15;	//	cluster_6_4
+# ------------------------------------------------------------------
+Hi put radio eliza	=>	 radio	//	radio=1.0;ON=0.125;on=0.091666676;	//	cluster_6_5_3
+Please eLiZa TV on 7	=>	 TV; 7	//	TV=0.8333334;3=0.73333335;Automation=0.1;	//	cluster_6_7
+turn on the radio	=>	 radio	//	radio=1.0;ON=0.6083334;	//	cluster_6_5_3
+I would like to listen to the beatles	=>	 radio; music	//	radio=0.7;Automation=0.2;On=0.2;	//	cluster_6_5_3
+put me the news on the 2 stp	=>	 TV ; 2	//	TV=1.0;3=0.8;	//	cluster_6_5_2
+Eliza what's the weather like?	=>	 weather	//	weather=0.975;Brittany=0.225;On=0.025;	//	cluster_7
+is it hot in paris?	=>	 weather; Paris	//	weather=0.975;Brittany=0.225;On=0.025;	//	cluster_7
+turn on the TV on a stp	=>	 TV; 1	//	TV=1.0	//	cluster_6_5_2
+I would like to see game of thrones	=>	 TV; series	//	TV=0.925;automation=0.05;home=0.05;	//	cluster_6_8
+I want to see a documentary	=>	 TV; documentary	//	TV=0.9666667;1=0.083333336;météo=0.033333335;	//	cluster_8
+light up the stp room	=>	 home automation light room	//	automation=0.85;home=0.85;light=0.8;	//	cluster_6_8
+switch on in the dining room	=>	 home automation dining_room; light	//	automation=0.925;dining_room=0.925;home=0.925;	//	cluster_5
+turn off my room	=>	 home automation	//	automation=1.0;home=1.0;light=0.083333336;	//	cluster_9
+puts the light back in the room	=>	 home automation room; light	//	automation=1.0;home=1.0;room=0.8833334;	//	cluster_9
+turn the boiler back on stp	=>	 boiler ; on	//	boiler=0.9;On=0.875;weather=0.075;	//	cluster_5
+relight the light in the garage	=>	 home automation; light; garage	//	automation=1.0;home=1.0;light=0.8833334;	//	cluster_9
+turn off the heating	=>	 boiler off	//	boiler=0.975;off=0.925;On=0.05;	//	cluster_5
+prepare me a coffee please Eliza	=>	 machine; coffee	//	machine=0.9666667;coffee=0.6666667;café=0.3;	//	cluster_6_7
+make me a little coffee Eliza	=>	 machine; coffee	//	machine=0.8666667;coffee=0.5666667;café=0.3;	//	cluster_6_7
+I would like to know if it floats in Lannion	=>	 weather; Brittany	//	weather=0.975;Brittany=0.525;On=0.025;	//	cluster_7
+Eliza turns up the volume a bit	=>	 radio; sound+	//	radio=0.9;sound+=0.65833336;3=0.1;	//	cluster_6_5_1
+you can lower the sound please	=>	 radio; sound-	//	radio=1.0;sound-=0.85;ON=0.033333335;	//	cluster_6_5_3
+turn off the room	=>	 home automation; light; bedroom ; off	//	automation=0.95;home=0.95;light=0.95;	//	cluster_6_8
+turn on the radio	=>	 radio; ON	//	radio=1.0;ON=0.6083334;	//	cluster_6_5_3
+switch on the heating	=>	 boiler; On; Automation	//	boiler=0.975;On=0.95;Automation=0.925;	//	cluster_5
+turn off all the mess	=>	 off; not_happy	//	off=0.95;not_happy=0.925;automation=0.05;	//	cluster_6_8
