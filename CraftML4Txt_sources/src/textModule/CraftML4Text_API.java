@@ -574,7 +574,7 @@ public class CraftML4Text_API {
 			lineInput=myInput.readLine();
 		}
 		String mess=getPassOnFileStatus();
-		myModel.indicationFinDePasse();
+		myModel.train();
 		String resultCompteModel= "model computed";
 		System.out.println(resultCompteModel);
 		//=============================================================================

@@ -132,11 +132,12 @@ public class SmallParser {
 		}
 		input=getNormalizedStringWithoutDoubleSpace(input);
 		input=input.replace(" ", "_");             //====================  spaces are replaced with underscores
+		//System.out.println("letter string après normalization : <"+input+">");
 		String[] result= new String[input.length()];
 		for (int i=0;i<input.length();i++) {
 			result[i]=input.substring(i, i+1);
 		}
-
+		//System.out.println(" taille result sequence qui va être retournée: "+result.length);
 		return result;
 	}
 
@@ -169,7 +170,7 @@ public class SmallParser {
 			s=s.replace("  ", " ");
 		}
 		s=s.trim();
-		
+
 		return s;
 	}
 
@@ -223,30 +224,30 @@ public class SmallParser {
 		if (s==null) {
 			MessManager.sayError("getNgramParsing s null");
 		}
-		
+
 		SmallItem result= new SmallItem();
-		
+
 		//System.out.println("PARSINg <"+s+">");
-		
+
 		s=s.trim();
 		if (s.equals("")) {
 			return result;
 		}
-		
+
 		// VERRUE pour indentifier début et fin de phrase//
 		s="[ "+s+" ]";
-		
-		
-		
+
+
+
 		if (s.length()<1) {
 			MessManager.sayWarning("getNgramParsing s size<1");
 		}
 		ArrayList<String> ngramsWords= new ArrayList<String>();
 		String[] sequenceW=getWordSequence(s);
-		 //System.out.println("word seq: ");  //====================================================================================
-		 //printSeq(sequenceW);  //=================================================================================================
+		//System.out.println("word seq: ");  //====================================================================================
+		//printSeq(sequenceW);  //=================================================================================================
 		ngramsWords=getNgramsFromSequence(sequenceW, wordNgramSize,true);
-		
+
 		/*
 		System.out.println();  //==================================================================================================
 		System.out.println("ArrayList des ngrams avant lettres:");
@@ -254,17 +255,19 @@ public class SmallParser {
 			System.out.println("  "+j+" <"+ngramsWords.get(j)+">");
 		}
 		System.out.println(); //===================================================================================================
-		*/
+		 */
 
 		if (letterNgramSize>=1) {
 			ArrayList<String> ngramsLetters= new ArrayList<String>();
 			String[] sequenceL=getLetterSequence(s);
-			// =========  System.out.println("letterSeq: ");
-			// =========  printSeq(sequenceL);
-			ngramsLetters=getNgramsFromSequence(sequenceL, letterNgramSize,false);
-			ngramsWords.addAll(ngramsLetters);
+			//System.out.println("letterSeq: ");
+			// printSeq(sequenceL);
+			if (sequenceL.length>0) {
+				ngramsLetters=getNgramsFromSequence(sequenceL, letterNgramSize,false);
+				ngramsWords.addAll(ngramsLetters);
+			}
 		}
-		
+
 		/*
 		System.out.println();  //==================================================================================================
 		System.out.println("ArrayList des ngrams après lettres:");
@@ -272,22 +275,22 @@ public class SmallParser {
 			System.out.println("  "+j+" <"+ngramsWords.get(j)+">");
 		}
 		System.out.println(); //===================================================================================================
-		*/
-		
-		
-		
-		
+		 */
+
+
+
+
 		for (int i=0;i<ngramsWords.size();i++) {
-			
+
 			//MODIFICATION DU JEUDI 5 MARS 2020 : ON PASSE EN COMPTE DE MOTS
 			//result.putKeyValue(ngramsWords.get(i), 1);
 			if (ngramsWords.get(i)!="") {
-			int previousCount = (int)result.getValue(ngramsWords.get(i));
-			previousCount++;
-			result.putKeyValue(ngramsWords.get(i), previousCount);
+				int previousCount = (int)result.getValue(ngramsWords.get(i));
+				previousCount++;
+				result.putKeyValue(ngramsWords.get(i), previousCount);
 			}
-			
-			
+
+
 		}
 		return result;
 	}
@@ -365,7 +368,7 @@ public class SmallParser {
 		//String t="1 2  3   4             5";
 
 		//String t=" a = b ; et c= d; Le chat  mange La souris (et l'oiseau), {mais pas la vache}... [ni le héron]";
-		
+
 		String t="b a baa baa b a";
 
 		//String[] list=myParser.getLetterSequence(t);
@@ -378,16 +381,16 @@ public class SmallParser {
 		System.out.println(ss.getLinetext("\n", "="));
 		System.out.println();
 		System.out.println();
-		
+
 		/*
-		
+
 		String s="label1, LAbel2 label3 ; label4		label5  label6";
 		String[] mesLabels=myParser.getListOfSeparatedLabels(s);
 		for (int i=0;i<mesLabels.length;i++) {
 			System.out.println(i+" "+mesLabels[i]);
 		}
 
-	*/
+		 */
 
 	}
 
