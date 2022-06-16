@@ -354,7 +354,7 @@ public class CraftML {
 	/**
 	 * Trains all trees
 	 */
-	public void indicationFinDePasse() {
+	public void train() {
 
 
 		for (int i = 0; i < (nbTrees / nbThread); i++) {
@@ -698,7 +698,7 @@ public class CraftML {
 			storeForLearning(x, y);
 			continueRead = fileReader.readNext();
 		}
-		indicationFinDePasse();
+		train();
 		hasLearnt = true;
 		fileReader.closeFile();
 	}
